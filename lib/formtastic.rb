@@ -1470,6 +1470,8 @@ module Formtastic #:nodoc:
         @files[method] ||= (options[:as].present? && options[:as] == :file) || begin
           file = @object.send(method) if @object && @object.respond_to?(method)
           file && file_methods.any?{|m| file.respond_to?(m)}
+        rescue
+          false
         end
       end
 
